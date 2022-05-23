@@ -1,0 +1,31 @@
+
+<div class="container" *ngIf="paciente">
+    <div class="row">
+        <div class="col-md-6"> 
+            <div class="col-md-6">    
+            <img [src]="paciente.rutaPortada | apiImg" alt="" class="w-100"> 
+        </div>
+        <div class="col-md-6">
+            <h1 class="fw-bold">{{ paciente.nombre }} {{ paciente.apePat }} {{ paciente.apeMat }} </h1>
+            <p>  
+                {{ paciente.descripcion}}               
+            </p>
+
+            <div class="mt-5">
+                <button 
+                mat-raised-button 
+                color="primary" 
+                (click)="agregarPacienteAlColector()"
+                *ngIf="!pacienteYaEstaEnElColector(); else botonRemover">
+                <mat-icon>check_circle</mat-icon> agregar a grupo
+                </button>
+            
+                <ng-template #botonRemover> 
+                    <button mat-raised-button color="warn" (click)="removerPacienteDelColector()">
+                        <mat-icon>delete</mat-icon> remover del grupo
+                    </button>
+                </ng-template>   
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,179 @@
+
+
+<div *ngIf="formulario">
+    <h1>{{ paciente? 'Editar' : 'Nuevo'}} paciente </h1>
+
+    <div class="row">
+        <div class="col-md-8" >
+
+            <div class="mt-5 alert alert-danger" *ngIf="errors"> 
+                {{ errors | json}} 
+               </div>       
+                
+        
+                    <form class="mt-5" [formGroup] ="formulario" (ngSubmit)="guardar()">
+        
+                        <mat-form-field appearance="outline" class="mb-2 w-100"> 
+                            <mat-label>Nombre</mat-label> 
+                            <input matInput type="text" placeholder="Nombre" formControlName="nombre">
+                            <mat-error>
+                                <ng-container *ngIf="controlTieneError('nombre','required')">
+                                    Este campo es obligatorio
+                                </ng-container>  
+                                <ng-container *ngIf="controlTieneError('nombre','maxlength')">
+                                    Este campo debe tener maximo 10 caracteres                
+                                </ng-container> 
+                                <ng-container *ngIf="controlTieneError('nombre','pattern')">
+                                    Inserta solo letras                
+                                </ng-container>
+                            </mat-error> 
+                        </mat-form-field>            
+                
+                        <mat-form-field appearance="outline" class="mb-2 w-100"> 
+                            <mat-label>Apellido Paterno </mat-label>
+                            <input matInput type="text" placeholder="Apellido Paterno"  formControlName="apePat">
+                            <mat-error>
+                                <ng-container *ngIf="controlTieneError('apePat','maxlength')">                     
+                                    Este campo debe tener maximo 30 caracteres                
+                                </ng-container>                  
+                                <ng-container *ngIf="controlTieneError('apePat','minlength')">
+                                    Este campo debe tener al menos 3 caracteres               
+                                </ng-container> 
+                                <ng-container *ngIf="controlTieneError('apePat','pattern')">
+                                    Inserta solo letras                
+                                </ng-container>
+                            </mat-error> 
+                        </mat-form-field>   
+                
+                        <mat-form-field appearance="outline" class="mb-2 w-100"> 
+                            <mat-label>Apellido Materno</mat-label>
+                            <input matInput type="text" placeholder="Apellido Materno"  formControlName="apeMat">
+                            <mat-error>
+                                <ng-container *ngIf="controlTieneError('apeMat','maxlength')">                     
+                                    Este campo debe tener maximo 30 caracteres                
+                                </ng-container>                  
+                                <ng-container *ngIf="controlTieneError('apeMat','minlength')">
+                                    Este campo debe tener al menos 3 caracteres               
+                                </ng-container>   
+                                
+                                <ng-container *ngIf="controlTieneError('apeMat','pattern')">
+                                    Inserta solo letras                
+                                </ng-container> 
+                            </mat-error>            
+                        </mat-form-field>   
+                
+                        <mat-form-field appearance="outline" class="mb-2 w-100"> 
+                            <mat-label>Numero Expediente</mat-label>
+                            <input matInput type="text" placeholder="Numero Expediente"  formControlName="numExp">
+                            <mat-error>
+                                <ng-container *ngIf="controlTieneError('nombre','required')">
+                                    Este campo es obligatorio
+                                </ng-container>  
+                
+                                <ng-container *ngIf="controlTieneError('numExp','minlength')">    
+                                    Este campo debe tener solo 8 caracteres                
+                                </ng-container> 
+                                
+                                <ng-container *ngIf="controlTieneError('numExp','maxlength')">                     
+                                    Este campo debe tener solo 8 caracteres                   
+                                </ng-container> 
+                
+                                <ng-container *ngIf="controlTieneError('numExp','pattern')">
+                                    Inserta solo numeros
+                                </ng-container>
+                            </mat-error>
+                        </mat-form-field>   
+                
+                        <mat-form-field appearance="outline" class="mb-2 w-100"> 
+                            <mat-label>Tel Contacto</mat-label>
+                            <input matInput type="text" placeholder="Telefono"  formControlName="telContacto">
+                            <mat-error>
+                                <ng-container *ngIf="controlTieneError('telContacto','minlength')">    
+                                    Este campo debe tener al menos 10 caracteres                
+                                </ng-container> 
+                                
+                                <ng-container *ngIf="controlTieneError('telContacto','maxlength')">                     
+                                    Este campo debe tener solo 10 caracteres                   
+                                </ng-container> 
+                
+                                <ng-container *ngIf="controlTieneError('telContacto','pattern')">
+                                    Inserta solo numeros
+                                </ng-container> 
+                            </mat-error>
+                        </mat-form-field>   
+                
+                        <mat-form-field appearance="outline" class="mb-2 w-100"> 
+                            <mat-label>Fecha de Nacimiento</mat-label>
+                            <input matInput type="text" placeholder="Fecha de Nacimiento"  formControlName="fechaNacimiento">            
+                            <mat-error>
+                            </mat-error>
+                        </mat-form-field>   
+                
+                        <mat-form-field appearance="outline" class="mb-2 w-100"> 
+                            <mat-label>Estado</mat-label>
+                            <input matInput type="text" placeholder="Estado de actividad"  formControlName="estado">            
+                            <mat-error>
+                                <ng-container *ngIf="controlTieneError('estado','minlength')">    
+                                    Este campo debe tener solo un caractere                
+                                </ng-container> 
+                                
+                                <ng-container *ngIf="controlTieneError('estado','maxlength')">                     
+                                    Este campo debe tener solo un caracter
+                                </ng-container> 
+                
+                                <ng-container *ngIf="controlTieneError('estado','pattern')">
+                                    Inserta solo numeros
+                                </ng-container> 
+                            </mat-error>
+                        </mat-form-field>  
+                        
+                        <div class="mb-3">
+                            <label class="d-block mb-1">Portada</label>
+                
+                            <button type="button" mat-raised-button (click)="archivoPortadaInputFile.click()"> 
+                                Selceccionar Archivo
+                            </button>
+                
+                        <div *ngIf="formulario.controls['rutaPortada'].valid"> 
+                            El archivo se ha subido: {{formulario.controls['rutaPortada'].value}}
+                        </div>
+                
+                        <mat-error *ngIf="controlTieneError('rutaPortada','required') && formulario.controls['rutaPortada'].touched">
+                            Este campo es obligatorio
+                        </mat-error>                     
+                
+                            <input type="file" accept="image/*" (change)="subirArchivo($event, 'rutaPortada')" class="form-control d-none" #archivoPortadaInputFile>        
+                        </div>
+        
+                        
+                        <div>
+                            <button mat-button type="button" routerLink="/admin/pacientes"> 
+                                Cancelar 
+                            </button> 
+        
+                            <button class="ms-2" mat-raised-button color="primary">
+                                {{ paciente? 'Actualizar' : 'Crear'}} Paciente
+        
+                            </button>               
+                      </div>
+                    </form>
+
+        </div>
+
+        <div class="col-md-4 text-center">
+            <div *ngIf="formulario.controls['rutaPortada'].value; else sinRutaPortada">
+                <div>Portada</div>
+                <img [src]="formulario.controls['rutaPortada'].value | apiImg" 
+                alt=""
+                class="img-thumbnail">
+
+            </div>
+
+            <div> <ng-template #sinRutaPortada></ng-template>
+                Sin Portada
+            </div>
+
+        </div>
+    </div>
+</div>    
+   

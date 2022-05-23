@@ -1,0 +1,11 @@
+<div class="container mt-5">
+    <h1 class="fw-bold">Todos nuestros Pacientes</h1>
+
+    <div infiniteScroll (scrolled)="cargarMasPacientes()">
+        <div class="row">
+                <div class="col-md-4 mb-3" *ngFor="let paciente of pacientes"> 
+                    <app-tarjeta-paciente [pacienteTarjeta]="paciente"></app-tarjeta-paciente>                     
+                </div>
+        </div>
+    </div>
+</div>

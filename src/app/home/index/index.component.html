@@ -1,0 +1,20 @@
+<div class="banner">
+    <div class="overlay"></div>
+    <div class="text">
+        <h1 class="title">Agenda</h1>
+        <p class="subtitle">
+            Hospital Psiquiatrico Infantil
+        </p>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <h1 class="fw-bold">Pacientes Recientes</h1>
+    <div class="row">
+
+        <div class="col-md-4 mb-3" *ngFor="let paciente of ultimosPacientes">
+              <app-tarjeta-paciente [pacienteTarjeta]="paciente"></app-tarjeta-paciente>           
+            <div>
+        </div>
+    </div>
+</div>

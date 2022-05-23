@@ -1,0 +1,69 @@
+<mat-toolbar>
+    <span>Agenda</span>      
+    
+    <button mat-button routerLink="/" class="ms-3">
+      Inicio
+    </button>   
+    
+    <button mat-button routerLink="/pacientes" class="ms-3">
+      Pacientes
+    </button> 
+
+    <button mat-button routerLink="/admin/pacientes" class="ms-3">
+        Administrar Pacientes
+      </button> 
+
+
+    <span class="spacer"></span>
+
+    <button mat-button [matMenuTriggerFor]="menuColector" [matBadge]="items.length">
+      <mat-icon>group_add</mat-icon>
+    </button>
+
+<mat-menu #menuColector="matMenu">
+  <ng-container *ngIf="items.length > 0, else sinItems">
+    <button mat-menu-item *ngFor="let item of items" class="colector-item">
+      <div class="d-flex gap-3">
+        <img [src]="item.rutaPortada | apiImg" 
+        alt="" 
+        style="max-width: 64px; max-height: 64px;"> 
+  
+        <div class="info">
+          <div class="fw-bold mb-1">
+              {{ item.nombre }}
+         
+              {{ item.numExp}}
+              
+          </div>
+      </div>
+    </div> 
+  </button>      
+  </ng-container>  
+
+
+    <button mat-menu-item class="text-center" routerLink="/colector">
+      Ir al grupo
+    </button>
+
+ 
+  <ng-template #sinItems>
+    <button mat-menu-item class="text-center">
+      El grupo esta vacio
+    </button>
+  </ng-template>
+ 
+
+  
+</mat-menu>
+
+
+    <button mat-button >
+      Administrador
+    </button>
+    
+  </mat-toolbar>
+
+  
+    <router-outlet></router-outlet>
+
+

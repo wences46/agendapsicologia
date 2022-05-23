@@ -1,0 +1,38 @@
+<mat-card class="curso-card">               
+    <img mat-card-image [src]="pacienteTarjeta.rutaPortada| apiImg">
+
+    <mat-card-content>
+      <h1>
+        {{ pacienteTarjeta.nombre }} {{ pacienteTarjeta.apePat }} {{ pacienteTarjeta.apeMat }} 
+      </h1>
+
+      <h1 class="fw-bold">
+        <a [routerLink]="['/pacientes', pacienteTarjeta.numExp]" color="primary">
+        {{ pacienteTarjeta.numExp}}   
+      </a>
+      </h1>
+
+      <h1>
+        {{ pacienteTarjeta.descripcion | slice:0:50}}...
+      </h1>
+    
+                
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button 
+        mat-raised-button 
+        color="primary" 
+        class="w-100" 
+        (click)="agregarPacienteAlColector()"
+        *ngIf="!pacienteYaEstaEnElColector(); else botonRemover"> 
+        <mat-icon>check_circle</mat-icon> agregar a grupo
+      </button>
+
+      <ng-template #botonRemover>
+      <button mat-raised-button color="warn" class="w-100" (click)="removerPacienteDelColector()">
+        <mat-icon>delete</mat-icon> remover del grupo
+      </button>
+    </ng-template>
+    </mat-card-actions>
+  </mat-card>

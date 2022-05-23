@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+    <span>Menu</span>      
+    
+    <button mat-button routerLink="/" class="ms-3">
+      Inicio
+    </button>   
+    
+    <button mat-button routerLink="pacientes" class="ms-3">
+      Pacientes
+    </button> 
+
+
+    <span class="spacer"></span>
+
+    <button mat-button >
+      Administrador
+    </button>
+    
+  </mat-toolbar>
+
+  <div class="container py-5"> 
+    <router-outlet></router-outlet>
+</div>
