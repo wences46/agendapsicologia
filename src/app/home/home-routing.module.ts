@@ -7,6 +7,7 @@ import { HomeLayoutComponent } from './home-layout/home-layout.component';
 import { PacientesComponent } from './pacientes/pacientes.component';
 import { DetallesPacienteComponent } from './detalles-paciente/detalles-paciente.component';
 import { ColectorComponent } from './colector/colector.component';
+import { DetallesGrupoComponent } from './detalles-grupo/detalles-grupo.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,10 @@ const routes: Routes = [
     {
       path: 'colector',
       component: ColectorComponent
+    },
+    {
+      path: 'detalles-grupo/:idGrupo',
+      component: DetallesGrupoComponent
     }      
     ]
   }  

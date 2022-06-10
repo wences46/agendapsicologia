@@ -10,6 +10,7 @@ import { TarjetaPacienteComponent } from './shared/tarjeta-paciente/tarjeta-paci
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { DetallesPacienteComponent } from './detalles-paciente/detalles-paciente.component';
 import { ColectorComponent } from './colector/colector.component';
+import { DetallesGrupoComponent } from './detalles-grupo/detalles-grupo.component';
 
 
 
@@ -20,7 +21,8 @@ import { ColectorComponent } from './colector/colector.component';
     PacientesComponent,
     TarjetaPacienteComponent,
     DetallesPacienteComponent,
-    ColectorComponent
+    ColectorComponent,
+    DetallesGrupoComponent
   ],
   imports: [
     CommonModule,

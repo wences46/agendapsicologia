@@ -24,8 +24,8 @@ export interface Paciente{
     asistencias:        any[];
     rutaPortada:        string;
     descripcion:        string;
-
-
+    precio:             number;
+    tutor:              string
 
 }
 

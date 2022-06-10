@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Paciente } from '../../admin/pacientes/shared/paciente.model';
 import { environment } from 'src/environments/environment';
 import { PacientePage } from '../../pacientes/shared/paciente.model';
+import { Grupo } from './grupo.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,4 +29,20 @@ export class HomeService {
   getPaciente(numExp: string) {
     return this.http.get<Paciente>(`${environment.apiBase}/pacientes/${numExp}`);
   }
+
+  crearPagoPaypal(idPacientes: number[]) {
+    const urlRetorno = 'http://localhost:4200/colector';
+    return this.http.post(`${environment.apiBase}/pago-paypal?urlRetorno=${urlRetorno}`, idPacientes);
+  }
+
+
+  comprobarPagoPaypal(token: string) {
+    return this.http.post(`${environment.apiBase}/pago-paypal/comprobar?token=${token}`, null);
+    }
+
+
+  getGrupo(idGrupo: number) {
+    return this.http.get<Grupo>(`${environment.apiBase}/detalles-grupo/${idGrupo}`);
+  }
+
 }
