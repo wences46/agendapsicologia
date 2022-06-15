@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Credentials } from '../shared/auth.model';
+import { AuthService } from '../shared/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,18 +11,30 @@ import { Credentials } from '../shared/auth.model';
   ]
 })
 export class LoginComponent implements OnInit {
-  credentials: Credentials =  {
+  credentials: Credentials = {
     username: '',
     password: ''
   }
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+    
+  ) { }
 
   ngOnInit(): void {
   }
 
-  login(){
-
+  login(formulario: NgForm) {
+    if (formulario.invalid) {
+      return;
+    }
+    this.authService.login(this.credentials)
+      .subscribe(() => {
+        console.log('login');
+        this.router.navigate(['']);
+      })
+    }
+  
   }
 
-}

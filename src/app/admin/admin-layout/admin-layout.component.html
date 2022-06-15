@@ -12,9 +12,15 @@
 
     <span class="spacer"></span>
 
-    <button mat-button >
-      Administrador
-    </button>
+    <button mat-button [matMenuTriggerFor]="menuUsuario">
+      <mat-icon>account_circle</mat-icon> {{ name }}
+  </button>
+
+  <mat-menu #menuUsuario="matMenu">
+      <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon> Cerrar sesión
+      </button>
+  </mat-menu>
     
   </mat-toolbar>
 

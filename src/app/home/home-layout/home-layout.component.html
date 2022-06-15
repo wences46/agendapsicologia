@@ -9,7 +9,7 @@
       Pacientes
     </button> 
 
-    <button mat-button routerLink="/admin/pacientes" class="ms-3">
+    <button mat-button routerLink="/admin/pacientes" class="ms-3" *ngIf="isAdmin()">
         Administrar Pacientes
       </button> 
 
@@ -56,10 +56,28 @@
   
 </mat-menu>
 
+<ng-container *ngIf="isLoggedIn(); else botonesAuth">
+  <button mat-button [matMenuTriggerFor]="menuUsuario">
+      <mat-icon>account_circle</mat-icon> {{ name }}
+  </button>
 
-    <button mat-button >
-      Administrador
-    </button>
+  <mat-menu #menuUsuario="matMenu">
+      <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon> Cerrar sesión
+      </button>
+  </mat-menu>
+</ng-container>
+
+<ng-template #botonesAuth>
+  <button mat-button routerLink="/auth/login" class="ms-2">
+      Iniciar sesión
+  </button>
+
+  <button mat-raised-button routerLink="/auth/registro" color="primary" class="ms-2">
+      Registrarme
+  </button>
+</ng-template>
+
     
   </mat-toolbar>
 

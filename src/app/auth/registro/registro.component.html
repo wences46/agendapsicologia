@@ -34,6 +34,11 @@
                         <ng-container *ngIf="controlTieneError('email', 'email')">
                             Ingrese un email válido
                         </ng-container>
+
+                        <ng-container *ngIf="controlTieneError('email', 'emailExiste')">
+                            El email ya fue registrado
+                        </ng-container>
+
                     </mat-error>
                 </mat-form-field>
 
