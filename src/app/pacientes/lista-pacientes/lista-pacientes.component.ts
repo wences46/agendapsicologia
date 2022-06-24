@@ -1,3 +1,4 @@
+/*
 import { Component, OnInit } from '@angular/core';
 import { Paciente } from '../shared/paciente.model';
 import { PacienteService } from '../shared/paciente.service';
@@ -35,7 +36,7 @@ getAll(){
     const respuesta = window.confirm('¿desea borrar el registro de este paciente?');
 
 if(respuesta){
-    this.pacienteService.eliminar(paciente.idPaciente)
+    this.pacienteService.eliminar(paciente.id)
     .subscribe(() =>{
       this.getAll();    
     })
@@ -45,3 +46,4 @@ if(respuesta){
 
 
 }
+*/

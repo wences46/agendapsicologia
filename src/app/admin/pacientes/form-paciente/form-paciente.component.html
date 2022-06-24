@@ -1,5 +1,3 @@
-
-
 <div *ngIf="formulario">
     <h1>{{ paciente? 'Editar' : 'Nuevo'}} paciente </h1>
 
@@ -8,10 +6,9 @@
 
             <div class="mt-5 alert alert-danger" *ngIf="errors"> 
                 {{ errors | json}} 
-               </div>       
-                
+               </div>  
         
-                    <form class="mt-5" [formGroup] ="formulario" (ngSubmit)="guardar()">
+               <form class="mt-5" [formGroup]="formulario" autocomplete="off" (ngSubmit)="guardar()">
         
                         <mat-form-field appearance="outline" class="mb-2 w-100"> 
                             <mat-label>Nombre</mat-label> 
@@ -126,6 +123,31 @@
                                 </ng-container> 
                             </mat-error>
                         </mat-form-field>  
+
+                        <mat-form-field appearance="outline" class="mb-2 w-100"> 
+                            <mat-label>Descripcion </mat-label>
+                            <input matInput type="text" placeholder="Descripcion"  formControlName="descripcion">
+                            <mat-error>
+                                <ng-container *ngIf="controlTieneError('descripcion','maxlength')">                     
+                                    Este campo debe tener maximo 30 caracteres                
+                                </ng-container>                  
+                                <ng-container *ngIf="controlTieneError('descripcion','minlength')">
+                                    Este campo debe tener al menos 3 caracteres               
+                                </ng-container> 
+                                <ng-container *ngIf="controlTieneError('descripcion','pattern')">
+                                    Inserta solo letras                
+                                </ng-container>
+                            </mat-error> 
+                        </mat-form-field>  
+
+
+
+
+
+
+
+
+
                         
                         <div class="mb-3">
                             <label class="d-block mb-1">Portada</label>
@@ -144,17 +166,48 @@
                 
                             <input type="file" accept="image/*" (change)="subirArchivo($event, 'rutaPortada')" class="form-control d-none" #archivoPortadaInputFile>        
                         </div>
-        
+
+
+                        <mat-form-field appearance="outline" class="mb-2 w-100"> 
+                            <mat-label>Precio</mat-label>
+                            <input matInput type="text" placeholder="Precio"  formControlName="precio">            
+                            <mat-error>
+                                
+                                
+                                <ng-container *ngIf="controlTieneError('precio','maxlength')">                     
+                                    Este campo debe tener minimo 2 caracteres
+                                </ng-container> 
+                
+                                <ng-container *ngIf="controlTieneError('precio','pattern')">
+                                    Inserta solo numeros
+                                </ng-container> 
+                            </mat-error>
+                        </mat-form-field>  
+
+
+                        <mat-form-field appearance="outline" class="mb-2 w-100"> 
+                            <mat-label>Tutor </mat-label>
+                            <input matInput type="text" placeholder="Tutor"  formControlName="tutor">
+                            <mat-error>
+                                <ng-container *ngIf="controlTieneError('tutor','maxlength')">                     
+                                    Este campo debe tener maximo 30 caracteres                
+                                </ng-container>                  
+                                <ng-container *ngIf="controlTieneError('tutor','minlength')">
+                                    Este campo debe tener al menos 3 caracteres               
+                                </ng-container> 
+                                <ng-container *ngIf="controlTieneError('tutor','pattern')">
+                                    Inserta solo letras                
+                                </ng-container>
+                            </mat-error> 
+                        </mat-form-field> 
                         
-                        <div>
+                        <div class="text-end mt-5">
                             <button mat-button type="button" routerLink="/admin/pacientes"> 
                                 Cancelar 
-                            </button> 
-        
+                            </button>
                             <button class="ms-2" mat-raised-button color="primary">
-                                {{ paciente? 'Actualizar' : 'Crear'}} Paciente
-        
-                            </button>               
+                                {{ paciente?  'Actualizar' : 'Crear'}} paciente        
+                            </button> 
                       </div>
                     </form>
 

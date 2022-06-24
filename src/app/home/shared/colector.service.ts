@@ -28,7 +28,7 @@ export class ColectorService {
     this.guardarEnLocalStorage();
   }
   removerItem(paciente: Paciente) {
-    this._items = this._items.filter(i => i.idPaciente != paciente.idPaciente);
+    this._items = this._items.filter(i => i.id != paciente.id);
     this.guardarEnLocalStorage();
 
   }
@@ -37,7 +37,7 @@ export class ColectorService {
     this.guardarEnLocalStorage();
   }
   itemYaExiste(paciente: Paciente) {
-    return this._items.findIndex(i => i.idPaciente == paciente.idPaciente) >= 0;
+    return this._items.findIndex(i => i.id == paciente.id) >= 0;
   }
 
   guardarEnLocalStorage(){

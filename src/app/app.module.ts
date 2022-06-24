@@ -10,10 +10,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthInterceptor } from './auth/helpers/auth.interceptor';
 
 
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent

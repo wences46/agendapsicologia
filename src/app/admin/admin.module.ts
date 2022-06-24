@@ -9,9 +9,6 @@ import { SharedModule } from '../shared/shared.module';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 
 
-
-
-
 @NgModule({
   declarations: [
     ListaPacientesComponent,
@@ -23,8 +20,7 @@ import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
     AdminRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
-    SharedModule,
-
+    SharedModule
    
   ]
 })

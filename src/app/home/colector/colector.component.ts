@@ -30,7 +30,7 @@ export class ColectorComponent implements OnInit {
         .subscribe((response: any) => {
           if (response.success) {
             this.colectorService.removerItems();
-            this.router.navigate(['detalles-grupo', response.idGrupo]);
+            this.router.navigate(['detalles-grupo', response.id]);
           }
         })
     }
@@ -49,11 +49,11 @@ export class ColectorComponent implements OnInit {
   }
 
   pagar() {
-    const idPacientes = this.items.map(item => item.idPaciente);
+    const id = this.items.map(item => item.id);
 
     this.loading = true;
 
-    this.homeService.crearPagoPaypal(idPacientes)
+    this.homeService.crearPagoPaypal(id)
       .subscribe((response: any) => {
         window.location = response.url;
       })

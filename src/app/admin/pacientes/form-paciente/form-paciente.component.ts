@@ -25,7 +25,7 @@ export class FormPacienteComponent implements OnInit {
   
 
   ngOnInit(): void {
-    const idPaciente = this.route.snapshot.paramMap.get('idPaciente');
+    const idPaciente = this.route.snapshot.paramMap.get('id');
     
 
     if(idPaciente){
@@ -41,7 +41,10 @@ export class FormPacienteComponent implements OnInit {
           telContacto: [paciente.telContacto, [Validators.minLength(10), Validators.maxLength(11), Validators.pattern('[0-9]+')], []],
           fechaNacimiento: [paciente.fechaNacimiento, []] ,
           estado:[paciente.estado, [Validators.minLength(0), Validators.maxLength(1), Validators.pattern('[0-5]+')], []],
-          rutaPortada: [paciente.rutaPortada, [Validators.required]]
+          rutaPortada: [paciente.rutaPortada, [Validators.required]],
+          descripcion: [paciente.descripcion, [Validators.minLength(3), Validators.maxLength(30), Validators.pattern('[a-zA-z ]+')], []],
+          precio: [paciente.precio, [Validators.required, Validators.minLength(2), Validators.maxLength(9), Validators.pattern('[0-9]+')], []],
+          tutor: [paciente.tutor, [Validators.required, Validators.minLength(3), Validators.maxLength(100), Validators.pattern('[a-zA-z ]+')], []],
         });       
     })
 
@@ -55,7 +58,10 @@ export class FormPacienteComponent implements OnInit {
       telContacto: [, [Validators.minLength(10), Validators.maxLength(11), Validators.pattern('[0-9]+')], []],
       fechaNacimiento: [, []],
       estado:[, [Validators.minLength(0), Validators.maxLength(1), Validators.pattern('[0-5]+')], []],
-      rutaPortada: [, [Validators.required]]
+      rutaPortada: [, [Validators.required]],
+      descripcion: [, [Validators.minLength(3), Validators.maxLength(30), Validators.pattern('[a-zA-z ]+')], []],
+      precio: [, [Validators.required, Validators.minLength(2), Validators.maxLength(9), Validators.pattern('[0-9]+')], []],
+      tutor: [, [Validators.required, Validators.minLength(3), Validators.maxLength(100), Validators.pattern('[a-zA-z ]+')], []],
     })
 
   }
@@ -78,44 +84,52 @@ export class FormPacienteComponent implements OnInit {
           this.formulario?.controls[control].setValue(response.filename);
         })
     }
-  }
-
-
+  } 
   
-
-
-    guardar(){
-      if(this.formulario?.invalid){
-        this.formulario.markAllAsTouched();
-        return;
-      }
+  
+  guardar() {
     
     
-
+    if (this.formulario?.invalid) {
+      this.formulario.markAllAsTouched();
+      return;
+    }
 
     const paciente = this.formulario?.value;
 
     let request;
 
-    if (this.paciente){
-      request = this.pacienteService.actualizar(this.paciente.idPaciente, paciente)
-         
-
-    }else{
-      request = this.pacienteService.crear(paciente)      
+    if (this.paciente) {
+      
+      
+      request = this.pacienteService.actualizar(this.paciente.id, paciente);    
+    } else {      
+     request = this.pacienteService.crear(paciente);
 
     }
+
+/*-----------------------------------------------------------
+    this.paciente 
+
+    let request;
     
+    request = this.pacienteService.crear(paciente);
+--------------------------------------------------------------*/
+
     request
-    .subscribe({
-      next: paciente =>{
-        this.router.navigate(['/admin/pacientes']);
-      },
-      error: error =>{
-        this.errors = error.error.errors;        
-      }
-    })    
-      
+      .subscribe({
+        next: paciente => {
+          this.router.navigate(['/admin/pacientes']);
+        },
+        error: error => {
+          this.errors = error.error.errors;
+        }
+      });
   }
 
+
+
+ 
+
 }
+

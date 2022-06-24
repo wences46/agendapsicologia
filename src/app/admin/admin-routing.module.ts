@@ -15,14 +15,15 @@ const routes: Routes = [
         path: 'pacientes',
         component: ListaPacientesComponent
       },
-      {
-        path: 'pacientes/nuevo',
-        component: FormPacienteComponent
-      },
+     
       {
         path: 'pacientes/:id/editar',
         component: FormPacienteComponent  
-    }
+    },
+    {
+      path: 'pacientes/nuevo',
+      component: FormPacienteComponent  
+  }
     ]
   }  
  

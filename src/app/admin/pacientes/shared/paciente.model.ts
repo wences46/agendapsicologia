@@ -1,6 +1,6 @@
 export interface PacientePage{
-    content:             Paciente[];
-    pageable:            Pageable;
+    content:            Paciente[];
+    pageable:           Pageable;
     last:               boolean;
     totalElements:      number;
     totalPages:         number;
@@ -12,22 +12,21 @@ export interface PacientePage{
     empty:              boolean; 
 }
 
-export interface Paciente{
-    idPaciente:         number;
-    nombre:             string;
-    apePat:             string;
-    apeMat:             string;
-    numExp:             string;
-    telContacto:        string;
-    fechaNacimiento:    Date;
-    estado:             null | string;
-    asistencias:        any[];
-    rutaPortada:        string;
-    descripcion:        string;
-    precio:             number;
-    tutor:              string
-
+export interface Paciente {
+    id:              number;
+    nombre:          string;
+    apePat:          string;
+    apeMat:          string;
+    numExp:          string;
+    telContacto:     string;
+    fechaNacimiento: Date;
+    estado:          null | string;
+    rutaPortada:     string;
+    descripcion:     string;
+    precio:          number;
+    tutor:           string;
 }
+
 
 export interface Pageable{
     sort:               Sort;

@@ -18,24 +18,22 @@ export class PacienteService {
     return this.http.get<Paciente[]>(`${environment.apiBase}/admin/pacientes/listar`);
   }
 
-
   paginar(size: number = 5, page: number = 0): Observable<PacientePage> {
     let params = new HttpParams();
     params = params.append('size', size);
     params = params.append('page', page);
     params = params.append('sort', 'numExp,asc');
 
-    return this.http.get<PacientePage>(`${environment.apiBase}/admin/paciente`, { params });
+    return this.http.get<PacientePage>(`${environment.apiBase}/admin/pacientes`, { params });
   }
 
-
   obtener(id: number): Observable<Paciente>{
-    return this.http.get<Paciente>(`${environment.apiBase}/admin/paciente/${id}`);
+    return this.http.get<Paciente>(`${environment.apiBase}/admin/pacientes/${id}`);
   }  
 
 
-  crear(paciente: Paciente): Observable<Paciente>{
-    return this.http.post<Paciente>(`${environment.apiBase}/admin/pacientes`, paciente);
+  crear(paciente: Paciente): Observable<Paciente>{    
+    return this.http.post<Paciente>(`${environment.apiBase}/admin/pacientes/crear/`, paciente); 
   }
 
 
@@ -43,19 +41,13 @@ export class PacienteService {
     return this.http.put<Paciente>(`${environment.apiBase}/admin/pacientes/${idPaciente}`, paciente);    
   }
 
-
-
   eliminar(id: number){
-    return this.http.delete<Paciente>(`${environment.apiBase}/admin/paciente/${id}`);
+    return this.http.delete(`${environment.apiBase}/admin/pacientes/${id}`);
   }
-
-
 
   subirArchivo(formData: FormData) {
     return this.http.post(`${environment.apiBase}/assets/upload`, formData);
   }
-
-
 
 
 }

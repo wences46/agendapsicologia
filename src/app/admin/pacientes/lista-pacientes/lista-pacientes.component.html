@@ -1,6 +1,4 @@
-
-
-<h1>Lista de Pacietes</h1>
+<h1>Lista de Pacientes</h1>
 
 <div class="text-end">
     <button mat-raised-button color="primary" routerLink="/admin/pacientes/nuevo">
@@ -42,8 +40,6 @@
             {{ paciente.apePat}}    
         </td>
       </ng-container>  
-   
-
 
      
        <ng-container matColumnDef="apeMat">
@@ -51,43 +47,52 @@
         <td mat-cell *matCellDef="let paciente"> 
             {{ paciente.apeMat }}    
         </td>
-      </ng-container>  
-   
-
-      
+      </ng-container> 
      
        <ng-container matColumnDef="telContacto">
         <th mat-header-cell *matHeaderCellDef> Tel. Contaco </th>
         <td mat-cell *matCellDef="let paciente"> {{paciente.telContacto}} </td>
       </ng-container>
  
-
- 
       <ng-container matColumnDef="fechaNacimiento">
         <th mat-header-cell *matHeaderCellDef> Fecha. Nacimiento </th>
         <td mat-cell *matCellDef="let paciente">  
-            {{paciente.fechaNacimiento | date:'dd/MM/yyyy'}} 
+            {{paciente.FechaNacimiento | date:'dd/MM/yyyy'}} 
         </td>
       </ng-container>
-       
 
       <ng-container matColumnDef="estado">
         <th mat-header-cell *matHeaderCellDef> Estado </th>
-        <td mat-cell *matCellDef="let paciente"> {{paciente.Estado}} </td>
+        <td mat-cell *matCellDef="let paciente"> 
+          {{paciente.estado}}          
+        </td>
       </ng-container> 
- 
 
+      <ng-container matColumnDef="descripcion">
+        <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+        <td mat-cell *matCellDef="let paciente"> {{paciente.descripcion}}           
+        </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="precio">
+        <th mat-header-cell *matHeaderCellDef> Precio </th>
+        <td mat-cell *matCellDef="let paciente"> {{paciente.precio}} </td>
+      </ng-container> 
 
+      <ng-container matColumnDef="tutor">
+        <th mat-header-cell *matHeaderCellDef> Tutor </th>
+        <td mat-cell *matCellDef="let paciente"> {{paciente.tutor}} </td>
+      </ng-container> 
       
   
       <!-- Symbol Column -->
       <ng-container matColumnDef="acciones">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let paciente"> 
-            <button [routerLink]="['/admin/pacientes', paciente.idPaciente, 'editar']" matTooltip="Editar paciente" mat-icon-button color="primary">
+            <button [routerLink]="['/admin/pacientes', paciente.id, 'editar']" matTooltip="Editar paciente" mat-icon-button color="primary">
                 <mat-icon>edit</mat-icon>
             </button>
-            <button class="ms-2" (click)="eliminar(paciente)" matTooltip="Eliminar libro" mat-icon-button color="warn">
+            <button class="ms-2" (click)="eliminar(paciente)" matTooltip="Eliminar paciente" mat-icon-button color="warn">
                 <mat-icon>delete</mat-icon>
             </button>    
         </td>

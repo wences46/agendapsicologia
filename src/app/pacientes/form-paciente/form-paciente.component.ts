@@ -1,3 +1,4 @@
+/*
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -76,7 +77,7 @@ export class FormPacienteComponent implements OnInit {
     let request;
 
     if (this.paciente){
-      request = this.pacienteService.actualizar(this.paciente.idPaciente, paciente)
+      request = this.pacienteService.actualizar(this.paciente.id, paciente)
          
 
     }else{
@@ -94,3 +95,4 @@ export class FormPacienteComponent implements OnInit {
   }
 
 }
+*/

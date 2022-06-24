@@ -12,8 +12,8 @@ import { PacientePage, Paciente } from '../shared/paciente.model';
 })
 export class ListaPacientesComponent implements OnInit {  
   pacientePage?: PacientePage;
-  displayedColumns: string[] = ['numExp', 'nombre', 'apePat', 'apeMat', 'telContacto', 'fechaNacimiento', 'estado', 'acciones', ];
-  
+  displayedColumns: string[] = ['numExp', 'nombre', 'apePat', 'apeMat', 'telContacto', 'fechaNacimiento', 
+                                'estado', 'descripcion', 'precio', 'tutor', 'acciones', ]; 
 
   constructor(
     private pacienteService: PacienteService
@@ -34,7 +34,7 @@ export class ListaPacientesComponent implements OnInit {
     const respuesta = window.confirm('¿Estás seguro de eliminar este libro?');
 
     if (respuesta) {
-      this.pacienteService.eliminar(paciente.idPaciente)
+      this.pacienteService.eliminar(paciente.id)
         .subscribe(() => {
           this.getAll();
         })
